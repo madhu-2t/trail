@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mondrian Project</title>
+  <style>
+    /* 
+    Write your CSS here 
+    Gap Colour: #000
+    White: #F0F1EC
+    Red: #E72F24
+    Black: #232629
+    Blue: #004592
+    Yellow: #F9D01E
+
+    For dimensions, see dimensions.png image.
+    HINT: Remember you can't change the properties of grid lines.
+    But grid lines are transparent!
+    */
+    .grid-container{
+      display: grid;
+      grid-template-columns: 320px 198px 153px 50px;
+      grid-template-rows: 414px 130px 155px 20px;
+      gap:9px;
+      background-color: black;
+      width: 748px;
+      height: 748px;
+    }
+    .first{
+      background-color:#E72F24 ;
+    }
+    .second{
+      background-color: #F0F1EC;
+      grid-column: span 3;
+    }
+    .third{
+      background-color: #F0F1EC;
+      grid-row: span 2;
+    }
+    .fourth{
+      background-color: #F0F1EC;
+      grid-row-start:2;
+      grid-row-end: 4;
+      grid-column-start:2;
+      grid-column-end: 4;
+
+    }
+    .fifth{
+      background-color: #004592;
+      border-bottom: 1px solid black;
+    }
+    .sixth{
+      height: 155px;
+      width: 50px;
+      background-color: #F0F1EC;
+    }
+    .seven{
+      background-color: #F0F1EC;
+    }
+    
+
+    /* .nine{
+      background-color: #F9D01E;
+    }
+    .tenth{
+      background-color: black;
+    } */
+
+    
+
+
+    
+  </style>
+</head>
+
+<body>
+  <!-- Write your HTML here -->
+  <div class="grid-container">
+    <div class="first card"></div>
+    <div class="second card"></div>
+    <div class="third card"></div>
+    <div class="fourth card"></div>
+    <div class="fifth card"></div>
+    <div class="sixth card"></div>
+    <div class="seven card"></div>
+    <div class="eight card"></div>
+    <div class="nine_1 card"></div>
+    <!-- <div class="tenth card"></div>
+    <div class="eleven card"></div> -->
+
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,17 @@
+{
+  "name": "learning-npm",
+  "version": "1.0.0",
+  "description": "try to generate qr for url",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "madhu",
+  "license": "ISC",
+  "dependencies": {
+    "inquirer": "^9.2.23",
+    "qr-image": "^3.2.0"
+    
+  }
+}
