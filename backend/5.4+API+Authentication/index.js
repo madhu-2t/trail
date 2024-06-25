@@ -1,15 +1,17 @@
 import express from "express";
 import axios from "axios";
-
+import dotenv from "dotenv";
+dotenv.config();
 const app = express();
 const port = 3000;
 const API_URL = "https://secrets-api.appbrewery.com/";
 
 //TODO 1: Fill in your values for the 3 types of auth.
-const yourUsername = "madhu0_o";
-const yourPassword = "ayyoayyo";
-const yourAPIKey = "10daeb4a-0307-44db-9004-0db1b0b56bdc";
-const yourBearerToken = "853f0757-4905-4cd6-88e8-99e49676ebf0";
+const yourUsername = process.env.username;
+const yourPassword = process.env.password;
+const yourAPIKey = process.env.APIKey;
+const yourBearerToken = process.env.BearerToken;
+
 const tokenStr=Buffer.from(yourUsername + ':' + yourPassword).toString('base64');
 console.log(tokenStr);
 app.get("/", (req, res) => {
@@ -34,26 +36,22 @@ app.get("/noAuth", async(req, res) => {
 });
 
 app.get("/basicAuth", async(req, res) => {
-      
-        const response = await axios.get("https://secrets-api.appbrewery.com/all?page=2",{
-          headers: {
-            'Authorization': 'Basic ' + tokenStr
-          }
-        })
-        .then(response => {
-          // Handle success
-          const result = JSON.stringify(response.data);
-          console.log(result);
-          res.render("index.ejs", { content: result });
-          // console.log(response.data);
-        })
-        .catch(error => {
-          // Handle errorconsole.error("Failed to make request:", error.message);
-          res.render("index.ejs", {
-            content: "username/password incorrect",
-          });
-          console.error(error);
-        });
+  try {
+    const response = await axios.get("https://secrets-api.appbrewery.com/all?page=2",{
+      headers: {
+        'Authorization': 'Basic ' + tokenStr
+      }
+    });
+    const result = JSON.stringify(response.data);
+    console.log(result);
+    res.render("index.ejs", { content: result });
+  } catch (error) {
+    console.error("Failed to make request:", error.message);
+    res.render("index.ejs", {
+      content: "username/password incorrect",
+    });
+  }
+        
           
           
           
@@ -104,25 +102,22 @@ app.get("/bearerToken", async(req, res) => {
     },
   });
     */
-  const response = await axios.get("https://secrets-api.appbrewery.com/secrets/1",{
-    headers: {
-      'Authorization': 'Bearer ' + yourBearerToken
-    }
-  })
-  .then(response => {
-    // Handle success
+  try {
+    const response = await axios.get("https://secrets-api.appbrewery.com/secrets/1",{
+      headers: {
+        'Authorization': 'Bearer ' + yourBearerToken
+      }
+    });
     const result = JSON.stringify(response.data);
     console.log(result);
     res.render("index.ejs", { content: result });
-    // console.log(response.data);
-  })
-  .catch(error => {
-    // Handle errorconsole.error("Failed to make request:", error.message);
+  } catch (error) {
+    console.error("Failed to make request:", error.message);
     res.render("index.ejs", {
       content: "username/password incorrect",
     });
-    console.error(error);
-  });
+  }
+  
     
     
     
