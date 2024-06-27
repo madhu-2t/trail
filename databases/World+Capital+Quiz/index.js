@@ -1,6 +1,9 @@
 import express from "express";
 import bodyParser from "body-parser";
 import pg from "pg";
+import dotenv from "dotenv";
+dotenv.config();
+ 
 
 
 
@@ -11,9 +14,9 @@ let quiz = [];
 const db=new pg.Client({
   user:'postgres',
   host:'localhost',
-  database:'world',
-  password:"123456",
-  port:5432
+  database:process.env.yourDatabase,
+  password:process.env.yourPassword,
+  port:process.env.yourPort
 });
 db.connect();
 db.query("SELECT * FROM flags",(err,res)=>{
@@ -69,3 +72,5 @@ async function nextQuestion() {
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
 });
+
+
